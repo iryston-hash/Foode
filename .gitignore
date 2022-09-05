@@ -1,4 +1,5 @@
 node_modules
 sass
 .parcel-cache
-dist/
+dist
+.prettierrc
