@@ -24,14 +24,18 @@ const renderSpinner = function (parentElement) {
           </svg>
     </div>
   `;
-  parentElement.innerHTML = ''
-  parentElement.insertAdjacentHTML('afterbegin',markup)
+  parentElement.innerHTML = '';
+  parentElement.insertAdjacentHTML('afterbegin', markup);
 };
 const receiveRecipe = async function () {
   try {
-    renderSpinner(recipeContainer)
+    const id = window.location.hash.slice(1);
+    console.log(id)
+    if (!id) return
+
+    renderSpinner(recipeContainer);
     const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bca5d`
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
     const data = await res.json();
     if (!res.ok)
@@ -148,8 +152,7 @@ const receiveRecipe = async function () {
     alert(error);
   }
 };
-receiveRecipe();
-
+['hashchange','load'].forEach(ev => window.addEventListener(ev, receiveRecipe))
 // const renderSpinner = function (parentEl) {
 //   const markup = `
 //     <div class="spinner">
