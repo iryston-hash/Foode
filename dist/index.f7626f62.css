@@ -21,7 +21,7 @@ html {
 body {
   color: #615551;
   min-height: calc(100vh - 8vw);
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Nunito Sans, sans-serif;
@@ -55,7 +55,7 @@ body {
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -101,9 +101,9 @@ body {
 }
 
 .btn--inline {
-  color: #64470c;
+  color: #000301f9;
   cursor: pointer;
-  background-color: #dc965a;
+  background-color: #fa8a61fd;
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -126,8 +126,8 @@ body {
 }
 
 .btn--inline:hover {
-  color: #f48982;
-  background-color: #f2efee;
+  color: #970a00;
+  background-color: #f2efee6d;
 }
 
 .btn--inline:focus {
@@ -138,7 +138,7 @@ body {
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   border: none;
   border-radius: 50%;
   justify-content: center;
@@ -172,7 +172,7 @@ body {
 .btn--tiny svg {
   height: 100%;
   width: 100%;
-  fill: #64470c;
+  fill: #000301f9;
   transition: all .3s;
 }
 
@@ -181,12 +181,12 @@ body {
 }
 
 .btn--tiny:hover svg {
-  fill: #f48982;
+  fill: #970a00;
   transform: translateY(-1px);
 }
 
 .btn--tiny:active svg {
-  fill: #f48982;
+  fill: #970a00;
   transform: translateY(0);
 }
 
@@ -195,7 +195,7 @@ body {
 }
 
 .heading--2 {
-  color: #64470c;
+  color: #000301f9;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -204,7 +204,7 @@ body {
 }
 
 .link:link, .link:visited {
-  color: #918581;
+  color: #000;
 }
 
 .spinner {
@@ -215,7 +215,7 @@ body {
 .spinner svg {
   height: 6rem;
   width: 6rem;
-  fill: #64470c;
+  fill: #000301f9;
   animation: rotate 2s linear infinite;
 }
 
@@ -239,7 +239,7 @@ body {
 .message svg, .error svg {
   height: 3rem;
   width: 3rem;
-  fill: #64470c;
+  fill: #000301f9;
   transform: translateY(-.3rem);
 }
 
@@ -251,7 +251,7 @@ body {
 }
 
 .header {
-  background-color: #dc965a;
+  background-color: #fa8a61fd;
   grid-area: head;
   justify-content: space-between;
   align-items: center;
@@ -292,7 +292,7 @@ body {
 }
 
 .search__field::placeholder {
-  color: #d3c7c3;
+  color: #1f0800;
 }
 
 @media only screen and (max-width: 61.25em) {
@@ -344,7 +344,7 @@ body {
 .nav__btn svg {
   height: 2.4rem;
   width: 2.4rem;
-  fill: #64470c;
+  fill: #000301f9;
   margin-right: .7rem;
   transform: translateY(-1px);
 }
@@ -354,7 +354,7 @@ body {
 }
 
 .nav__btn:hover {
-  background-color: #f2efee;
+  background-color: #f2efee6d;
 }
 
 .bookmarks {
@@ -384,7 +384,7 @@ body {
 }
 
 .bookmarks__field:hover {
-  background-color: #f2efee;
+  background-color: #f2efee6d;
 }
 
 .bookmarks:hover, .nav__btn--bookmarks:hover + .bookmarks {
@@ -402,12 +402,12 @@ body {
 }
 
 .preview__link:hover {
-  background-color: #dc965a;
+  background-color: #fa8a61fd;
   transform: translateY(-2px);
 }
 
 .preview__link--active {
-  background-color: #dc965a;
+  background-color: #fa8a61fd;
 }
 
 .preview__fig {
@@ -425,7 +425,7 @@ body {
   height: 100%;
   width: 100%;
   opacity: .4;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   display: block;
   position: absolute;
   top: 0;
@@ -449,7 +449,7 @@ body {
 }
 
 .preview__title {
-  color: #64470c;
+  color: #000301f9;
   text-transform: uppercase;
   text-overflow: ellipsis;
   max-width: 25rem;
@@ -461,7 +461,7 @@ body {
 }
 
 .preview__publisher {
-  color: #918581;
+  color: #000;
   text-transform: uppercase;
   font-size: 1.15rem;
   font-weight: 600;
@@ -470,7 +470,7 @@ body {
 .preview__user-generated {
   height: 2rem;
   width: 2rem;
-  background-color: #eeeae8;
+  background-color: #eeeae86d;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -482,10 +482,11 @@ body {
 .preview__user-generated svg {
   height: 1.2rem;
   width: 1.2rem;
-  fill: #64470c;
+  fill: #000301f9;
 }
 
 .search-results {
+  border-top-right-radius: 20px;
   flex-direction: column;
   padding: 3rem 0;
   display: flex;
@@ -516,18 +517,18 @@ body {
 }
 
 .copyright {
-  color: #918581;
+  color: #000;
   margin-top: 4rem;
   padding: 0 3.5rem;
   font-size: 1.2rem;
 }
 
 .copyright .twitter-link:link, .copyright .twitter-link:visited {
-  color: #918581;
+  color: #000;
 }
 
 .recipe {
-  background-color: #dc965a;
+  background-color: #fa8a61fd;
 }
 
 .recipe__fig {
@@ -541,7 +542,7 @@ body {
   height: 100%;
   width: 100%;
   opacity: .6;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   display: block;
   position: absolute;
   top: 0;
@@ -572,7 +573,7 @@ body {
 .recipe__title span {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
   padding: 1.3rem 2rem;
 }
 
@@ -602,7 +603,7 @@ body {
 .recipe__info-icon {
   height: 2.35rem;
   width: 2.35rem;
-  fill: #64470c;
+  fill: #000301f9;
   margin-right: 1.15rem;
 }
 
@@ -620,7 +621,7 @@ body {
 .recipe__user-generated {
   height: 4rem;
   width: 4rem;
-  background-color: #eeeae8;
+  background-color: #eeeae86d;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -632,11 +633,11 @@ body {
 .recipe__user-generated svg {
   height: 2.25rem;
   width: 2.25rem;
-  fill: #64470c;
+  fill: #000301f9;
 }
 
 .recipe__ingredients {
-  background-color: #f2efee;
+  background-color: #f2efee6d;
   flex-direction: column;
   align-items: center;
   padding: 5rem 8rem;
@@ -659,7 +660,7 @@ body {
 .recipe__icon {
   height: 2rem;
   width: 2rem;
-  fill: #64470c;
+  fill: #000301f9;
   flex: none;
   margin-top: .1rem;
   margin-right: 1.1rem;
@@ -679,7 +680,7 @@ body {
 
 .recipe__directions-text {
   text-align: center;
-  color: #918581;
+  color: #000;
   margin-bottom: 3.5rem;
   font-size: 1.7rem;
 }
@@ -760,12 +761,12 @@ body {
 }
 
 .upload__column input::placeholder {
-  color: #d3c7c3;
+  color: #1f0800;
 }
 
 .upload__column input:focus {
-  background-color: #dc965a;
-  border: 1px solid #64470c;
+  background-color: #fa8a61fd;
+  border: 1px solid #000301f9;
   outline: none;
 }
 
