@@ -1,4 +1,3 @@
-import { async } from 'regenerator-runtime';
 import { API_URL } from './config.js';
 import { getJSON} from './helpers.js'
 
@@ -20,6 +19,6 @@ export const receiveRecipe = async function (id) {
     };
     console.log(state.recipe);
   } catch (err) {
-    alert(err);
+    console.error(`${err} 💥💥💥💥`)
   }
 };
