@@ -1,12 +1,18 @@
 import { API_URL } from './config.js';
-import { getJSON} from './helpers.js'
+import { getJSON } from './helpers.js';
 
+// state contains all the data
 export const state = {
   recipe: {},
+  search: {
+    query: '',
+    results: []
+  }
 };
 export const receiveRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}/${id}`)
+    const data = await getJSON(`${API_URL}${id}`);
+
     const { recipe } = data.data;
     state.recipe = {
       id: recipe.id,
@@ -17,8 +23,28 @@ export const receiveRecipe = async function (id) {
       servings: recipe.servings,
       source: recipe.source_url,
     };
-    console.log(state.recipe);
   } catch (err) {
-    console.error(`${err} 💥💥💥💥`)
+    console.error(`${err} 💥💥💥💥`);
+    throw err;
+  }
+};
+// Search
+export const loadSearchResults = async function (query) {
+  try {
+    state.search.query
+    const data = await getJSON(`${API_URL}?search=${query}`);
+    console.log(data);
+    state.search.results = data.data.recipes.map(rec => {
+      return {
+        id: rec.id,
+        image: rec.image_url,
+        title: rec.title,
+        ingredients: rec.ingredients,
+      };
+    });
+    console.log(state.search.results)
+  } catch (err) {
+    console.error(`${err} 💦💦💦💦`);
+    throw err;
   }
 };
