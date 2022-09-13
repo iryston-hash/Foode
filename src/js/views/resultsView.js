@@ -1,12 +1,13 @@
 import View from './View.js';
-import icons from 'url:../../img/icons.svg'
+import icons from 'url:../../img/icons.svg';
 
 class ResultsView extends View {
   _parentElement = document.querySelector('.results');
-  
+  _errorMessage = `No recipes found for you request. Try another query`;
+  _successfulMessage = ``;
+
   _generateMarkup() {
-    return this._data.map(this._generateMarkupPreview).join('')
-    
+    return this._data.map(this._generateMarkupPreview).join('');
   }
   _generateMarkupPreview(result) {
     // this is an array , we need to map it and join.

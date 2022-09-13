@@ -57,9 +57,7 @@ class RecipeView extends View{
     </div>
 
     <div class="recipe__user-generated">
-      <svg>
-        <use href="${icons}/img/icons.svg#icon-user"></use>
-      </svg>
+      
     </div>
     <button class="btn--round">
       <svg class="">
@@ -77,11 +75,10 @@ class RecipeView extends View{
   <div class="recipe__directions">
     <h2 class="heading--2">How to cook it</h2>
     <p class="recipe__directions-text">
-      This this._data was carefully designed and tested by
+      Source of Recipes are located on 
       <span class="recipe__publisher">${
         this._data.source
-      }</span>. Please check out
-      directions at their website.
+      }</span>. Please for detail explanation of cooking certain meals , visit the website linked above.
     </p>
     <a
       class="btn--small recipe__btn"
