@@ -3,6 +3,21 @@ import icons from 'url:../../img/icons.svg';
 
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
+  
+  // ill be using event delegation ,as we have multiple buttons, so ill A.D.L to the parentElement
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener('click', function(e) {
+      // N.B. closest is like qs , but it searches up , rather than down the DOM tree
+      const btn = e.target.closest('.btn--inline')
+      if (!btn) return 
+      console.log(btn)
+
+      const goToPage = +btn.dataset.goto
+      console.log(goToPage)
+
+      handler(goToPage)
+    })
+  }
 
   _generateMarkup() {
     const currentPage = this._data.page;
@@ -13,7 +28,7 @@ class PaginationView extends View {
     // Page 1 , ...
     if (currentPage === 1 && numPages > 1) {
       return `
-        <button class="btn--inline pagination__btn--next">
+        <button data-goto="${currentPage + 1}" class="btn--inline pagination__btn--next">
           <span>${currentPage + 1}</span>
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-right"></use>
@@ -25,7 +40,7 @@ class PaginationView extends View {
     // last page
     if (currentPage === numPages && numPages > 1) {
       return ` 
-        <button class="btn--inline pagination__btn--prev">
+        <button data-goto="${currentPage - 1}" class="btn--inline pagination__btn--prev">
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-left"></use>
           </svg>
@@ -36,14 +51,14 @@ class PaginationView extends View {
     // Other pages
     if (currentPage < numPages) {
       return `
-        <button class="btn--inline pagination__btn--prev">
+        <button data-goto="${currentPage - 1}" class="btn--inline pagination__btn--prev">
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-left"></use>
           </svg>
           <span>${currentPage - 1}</span>
         </button>
 
-        <button class="btn--inline pagination__btn--next">
+        <button data-goto="${currentPage + 1}" class="btn--inline pagination__btn--next">
           <span>${currentPage + 1}</span>
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-right"></use>

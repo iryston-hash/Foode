@@ -8,6 +8,7 @@ class RecipeView extends View{
   _successfulMessage = ``
 
   // publisher-subscriber pattern , this public method listens to events and calls it in contoller.js
+  // Publisher (a function) that listens for the event, which receive the handler function , that will be the controller , that lives in 'controller.js file' , controller will handle the event!!!
   addHandleRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }

@@ -38,7 +38,7 @@ const controllerSearchResults = async function () {
 
     // render search results
     // resultsView.render(model.state.search.results);
-    resultsView.render(model.getSearchResultsPage(1))
+    resultsView.render(model.getSearchResultsPage())
     // render the pagination buttons
     paginationView.render(model.state.search)
   } catch (err) {
@@ -47,9 +47,18 @@ const controllerSearchResults = async function () {
 };
 controllerSearchResults();
 
+// handler
+const controllerPagination = function(goToPage) {
+  // render NEW RESULTS
+  resultsView.render(model.getSearchResultsPage(goToPage))
+  //  render new Pag btns
+  paginationView.render(model.state.search)
+} 
+
 // publisher-subscriber pattern
 const init = function () {
   recipeView.addHandleRender(controllerRecipes);
   searchView.addHandlerSearch(controllerSearchResults);
+  paginationView.addHandlerClick(controllerPagination)
 };
 init();
