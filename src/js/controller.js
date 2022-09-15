@@ -2,6 +2,7 @@ import * as model from './module.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 // polyfills for older browsers
 import 'regenerator-runtime/runtime';
 import 'core-js/stable';
@@ -32,13 +33,14 @@ const controllerSearchResults = async function () {
   try {
     const query = searchView.getQuery();
     if (!query) return;
-
+    // load the search results
     await model.loadSearchResults(query);
 
     // render search results
     // resultsView.render(model.state.search.results);
-    // search pages
-    resultsView.render(model.getSearchResultsPage())
+    resultsView.render(model.getSearchResultsPage(1))
+    // render the pagination buttons
+    paginationView.render(model.state.search)
   } catch (err) {
     console.log(err);
   }
