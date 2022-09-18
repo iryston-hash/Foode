@@ -27,6 +27,7 @@ const controllerRecipes = async function () {
   } catch (err) {
     recipeView.renderError();
   }
+
 };
 
 const controllerSearchResults = async function () {
@@ -55,9 +56,17 @@ const controllerPagination = function(goToPage) {
   paginationView.render(model.state.search)
 } 
 
+const controllerServings = function() {
+  // update recipe servings (in state)
+  model.updateServings(8)
+  //  update the recipe view
+  recipeView.render(model.state.recipe)
+}
+
 // publisher-subscriber pattern
 const init = function () {
   recipeView.addHandleRender(controllerRecipes);
+  // recipeView.addHandlerUpdateServings(controllerServings)
   searchView.addHandlerSearch(controllerSearchResults);
   paginationView.addHandlerClick(controllerPagination)
 };

@@ -1,17 +1,26 @@
-import View from './View.js'
+import View from './View.js';
 import icons from 'url:../../img/icons.svg';
 import { Fraction } from 'fractional';
 
-class RecipeView extends View{
+class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
-  _errorMessage = `Recipe was not found. try another one!`
-  _successfulMessage = ``
+  _errorMessage = `Recipe was not found. try another one!`;
+  _successfulMessage = ``;
 
   // publisher-subscriber pattern , this public method listens to events and calls it in contoller.js
   // Publisher (a function) that listens for the event, which receive the handler function , that will be the controller , that lives in 'controller.js file' , controller will handle the event!!!
   addHandleRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
+
+  // addHandlerUpdateServings(handler) {
+  //   this._parentElement.addEventListener('click', function(e) {
+  //     const btn = e.target.closest('.btn--tiny')
+  //     if(!btn) return 
+  //     console.log(btn)
+  //     handler()
+  //   })
+  // }
 
   _generateMarkup() {
     return `
