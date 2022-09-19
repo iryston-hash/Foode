@@ -11,6 +11,7 @@ export const state = {
     resultsPagination: RES_PAGINATION,
   },
 };
+
 export const receiveRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}${id}`);
@@ -24,7 +25,9 @@ export const receiveRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       servings: recipe.servings,
       source: recipe.source_url,
+      publisher: recipe.publisher,
     };
+    console.log(recipe ,data);
   } catch (err) {
     console.error(`${err} 💥💥💥💥`);
     throw err;

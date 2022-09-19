@@ -12,25 +12,14 @@ class RecipeView extends View {
   addHandleRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
-
-  // addHandlerUpdateServings(handler) {
-  //   this._parentElement.addEventListener('click', function(e) {
-  //     const btn = e.target.closest('.btn--tiny')
-  //     if(!btn) return
-  //     console.log(btn)
-  //     handler()
-  //   })
-  // }
-
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--update-servings');
       if (!btn) return;
-      console.log(btn);
-      // const updateTo = btn.dataset.updateTo
-      // const updateTo = +btn.dataset.updateTo;
       const {updateTo} = btn.dataset
-      if(+updateTo > 0) handler(+updateTo);
+      if (+updateTo > 0) {
+        handler(+updateTo);
+      }
     });
   }
 
@@ -113,7 +102,7 @@ class RecipeView extends View {
     >
       <span>Directions</span>
       <svg class="search__icon">
-        <use href="${icons}/img/icons.svg#icon-arrow-right"></use>
+        <use href="${icons}#icon-arrow-right"></use>
       </svg>
     </a>
   </div>

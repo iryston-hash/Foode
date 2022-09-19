@@ -65,9 +65,7 @@ const controllerServings = function (newServings) {
 // publisher-subscriber pattern
 const init = function () {
   recipeView.addHandleRender(controllerRecipes);
-
   recipeView.addHandlerUpdateServings(controllerServings)
-  // recipeView.addHandlerUpdateServings(controllerServings)
   searchView.addHandlerSearch(controllerSearchResults);
   paginationView.addHandlerClick(controllerPagination);
 };
