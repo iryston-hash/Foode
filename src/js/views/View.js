@@ -22,13 +22,19 @@ export default class View {
     const currentElements = Array.from(
       this._parentElement.querySelectorAll('*')
     );
-    console.log(currentElements)
-    console.log(newElements)
 
-    newElements.forEach((newEl , index) => {
-      const curElements = currentElements[i]
-      console.log(newEl.isEqualNode(curElements))
-    })
+    newElements.forEach((newEl, i) => {
+      const curElements = currentElements[i];
+      // console.log(curElements, newEl.isEqualNode(curElements));
+
+      if (
+        !newEl.isEqualNode(curElements) &&
+        newEl.firstChild?.nodeValue.trim() !== ''
+      ) {
+        console.log(newEl.firstChild.nodeValue.trim() )
+        curElements.textContent = newEl.textContent;
+      }
+    });
   }
 
   _clear() {
