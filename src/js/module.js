@@ -27,7 +27,6 @@ export const receiveRecipe = async function (id) {
       source: recipe.source_url,
       publisher: recipe.publisher,
     };
-    console.log(recipe ,data);
   } catch (err) {
     console.error(`${err} 💥💥💥💥`);
     throw err;

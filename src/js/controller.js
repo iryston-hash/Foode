@@ -59,7 +59,10 @@ const controllerServings = function (newServings) {
   // update recipe servings (in state)
   model.updateServings(newServings);
   //  update the recipe view
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+
+  // Creating 'recipeView.update' to not redner all DOM , but the neccesarry nodes that changes , like in SPA's , only will render text and attributes , to not render entire view.
+  recipeView.update(model.state.recipe)
 };
 
 // publisher-subscriber pattern
