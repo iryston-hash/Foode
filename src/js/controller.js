@@ -66,6 +66,12 @@ const controllerServings = function (newServings) {
   recipeView.update(model.state.recipe)
 };
 
+// BOOKMARK
+const controllerAddBookmark = function () {
+  model.addBookmark(model.state.recipe)
+  console.log(model.state.recipe)
+}
+
 // publisher-subscriber pattern
 const init = function () {
   recipeView.addHandleRender(controllerRecipes);

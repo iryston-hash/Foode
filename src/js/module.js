@@ -10,6 +10,7 @@ export const state = {
     page: 1,
     resultsPagination: RES_PAGINATION,
   },
+  bookmarks: [],
 };
 
 export const receiveRecipe = async function (id) {
@@ -36,20 +37,26 @@ export const receiveRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query;
+
     const data = await getJSON(`${API_URL}?search=${query}`);
+
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
         image: rec.image_url,
         title: rec.title,
-        ingredients: rec.ingredients,
+        publisher: rec.publisher,
       };
     });
+    // whenever the new search page init. , the search results section of pagination restarts to the first page.
+    state.search.page = 1;
+
   } catch (err) {
     console.error(`${err} 💦💦💦💦`);
     throw err;
   }
 };
+
 // pagination
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
@@ -67,3 +74,11 @@ export const updateServings = function (newServings) {
   });
   state.recipe.servings = newServings;
 };
+
+// Bookmarks
+export const addBookmark = function(recipe) {
+  state.bookmarks.push(recipe)
+
+  // marked bookmark
+  if(recipe.id === state.recipe.id) state.recipe.bookmarked = true
+} 

@@ -19,9 +19,9 @@ html {
 }
 
 body {
-  color: #615551;
+  color: #000;
   min-height: calc(100vh - 8vw);
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Nunito Sans, sans-serif;
@@ -40,7 +40,7 @@ body {
   margin: 4vw auto;
   display: grid;
   overflow: hidden;
-  box-shadow: 0 2rem 6rem .5rem #61555133;
+  box-shadow: 0 2rem 6rem .5rem #0003;
 }
 
 @media only screen and (max-width: 78.15em) {
@@ -55,7 +55,7 @@ body {
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -103,7 +103,7 @@ body {
 .btn--inline {
   color: #000301f9;
   cursor: pointer;
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -126,8 +126,8 @@ body {
 }
 
 .btn--inline:hover {
-  color: #970a00;
-  background-color: #f2efee6d;
+  color: #0d0100;
+  background-color: #56046d52;
 }
 
 .btn--inline:focus {
@@ -138,7 +138,7 @@ body {
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   border: none;
   border-radius: 50%;
   justify-content: center;
@@ -181,12 +181,12 @@ body {
 }
 
 .btn--tiny:hover svg {
-  fill: #970a00;
+  fill: #0d0100;
   transform: translateY(-1px);
 }
 
 .btn--tiny:active svg {
-  fill: #970a00;
+  fill: #0d0100;
   transform: translateY(0);
 }
 
@@ -251,7 +251,7 @@ body {
 }
 
 .header {
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
   grid-area: head;
   justify-content: space-between;
   align-items: center;
@@ -275,7 +275,7 @@ body {
 
 .search:focus-within {
   transform: translateY(-2px);
-  box-shadow: 0 .7rem 3rem #61555114;
+  box-shadow: 0 .7rem 3rem #00000014;
 }
 
 .search__field {
@@ -354,7 +354,7 @@ body {
 }
 
 .nav__btn:hover {
-  background-color: #f2efee6d;
+  background-color: #56046d52;
 }
 
 .bookmarks {
@@ -367,7 +367,7 @@ body {
   transition: all .5s .2s;
   position: absolute;
   right: -2.5rem;
-  box-shadow: 0 .8rem 5rem 2rem #6155511a;
+  box-shadow: 0 .8rem 5rem 2rem #0000001a;
 }
 
 .bookmarks__list {
@@ -384,7 +384,7 @@ body {
 }
 
 .bookmarks__field:hover {
-  background-color: #f2efee6d;
+  background-color: #56046d52;
 }
 
 .bookmarks:hover, .nav__btn--bookmarks:hover + .bookmarks {
@@ -402,12 +402,12 @@ body {
 }
 
 .preview__link:hover {
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
   transform: translateY(-2px);
 }
 
 .preview__link--active {
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
 }
 
 .preview__fig {
@@ -425,7 +425,7 @@ body {
   height: 100%;
   width: 100%;
   opacity: .4;
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   display: block;
   position: absolute;
   top: 0;
@@ -470,7 +470,7 @@ body {
 .preview__user-generated {
   height: 2rem;
   width: 2rem;
-  background-color: #eeeae86d;
+  background-color: #4e046352;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -528,7 +528,7 @@ body {
 }
 
 .recipe {
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
 }
 
 .recipe__fig {
@@ -542,7 +542,7 @@ body {
   height: 100%;
   width: 100%;
   opacity: .6;
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   display: block;
   position: absolute;
   top: 0;
@@ -573,7 +573,7 @@ body {
 .recipe__title span {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background-image: linear-gradient(to bottom right, #6c0381, #970a00);
+  background-image: linear-gradient(to bottom right, #6c0381, #0d0100);
   padding: 1.3rem 2rem;
 }
 
@@ -621,7 +621,7 @@ body {
 .recipe__user-generated {
   height: 4rem;
   width: 4rem;
-  background-color: #eeeae86d;
+  background-color: #4e046352;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -637,7 +637,7 @@ body {
 }
 
 .recipe__ingredients {
-  background-color: #f2efee6d;
+  background-color: #56046d52;
   flex-direction: column;
   align-items: center;
   padding: 5rem 8rem;
@@ -765,7 +765,7 @@ body {
 }
 
 .upload__column input:focus {
-  background-color: #fa8a61fd;
+  background-color: #260a3e14;
   border: 1px solid #000301f9;
   outline: none;
 }

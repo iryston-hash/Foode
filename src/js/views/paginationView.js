@@ -10,10 +10,10 @@ class PaginationView extends View {
       // N.B.! 'closest' is like 'qs', but it searches up , rather than down the DOM tree
       const btn = e.target.closest('.btn--inline');
       if (!btn) return;
-      console.log(btn);
+      // console.log(btn);
 
       const goToPage = +btn.dataset.goto;
-      console.log(goToPage);
+      // console.log(goToPage);
 
       handler(goToPage);
     });
@@ -24,7 +24,8 @@ class PaginationView extends View {
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPagination
     );
-    console.log(numPages);
+    
+    // console.log(numPages);
     // Page 1 , ...
     if (currentPage === 1 && numPages > 1) {
       return `
