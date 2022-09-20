@@ -31,7 +31,7 @@ const controllerSearchResults = async function () {
   try {
     const query = searchView.getQuery();
     if (!query) return;
-    resultsView.renderSpinner()
+    resultsView.renderSpinner();
 
     // load the search results
     await model.loadSearchResults(query);
@@ -39,7 +39,7 @@ const controllerSearchResults = async function () {
     // render search results
     // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
-    
+
     // render the pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
@@ -63,19 +63,23 @@ const controllerServings = function (newServings) {
   // recipeView.render(model.state.recipe);
 
   // Creating 'recipeView.update' to not redner all DOM , but the neccesarry nodes that changes , like in SPA's , only will render text and attributes , to not render entire view.
-  recipeView.update(model.state.recipe)
+  recipeView.update(model.state.recipe);
 };
 
 // BOOKMARK
 const controllerAddBookmark = function () {
-  model.addBookmark(model.state.recipe)
-  console.log(model.state.recipe)
-}
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.removeBookmark(model.state.recipe.id);
+
+  console.log(model.state.recipe);
+  recipeView.update(model.state.recipe);
+};
 
 // publisher-subscriber pattern
 const init = function () {
   recipeView.addHandleRender(controllerRecipes);
-  recipeView.addHandlerUpdateServings(controllerServings)
+  recipeView.addHandlerUpdateServings(controllerServings);
+  recipeView.addHandlerAddBookmark(controllerAddBookmark);
   searchView.addHandlerSearch(controllerSearchResults);
   paginationView.addHandlerClick(controllerPagination);
 };
