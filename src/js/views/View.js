@@ -11,8 +11,6 @@ export default class View {
   }
 
   update(data) {
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError();
     this._data = data;
     const newMarkup = this._generateMarkup();
     // converting the string data into the Virtual DOM , to later compare to real DOM , and change what only needs to be rendered on change.
@@ -27,13 +25,19 @@ export default class View {
       const curElements = currentElements[i];
       // console.log(curElements, newEl.isEqualNode(curElements));
 
+      // udpates change text , but not attributes
       if (
         !newEl.isEqualNode(curElements) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        console.log(newEl.firstChild.nodeValue.trim() )
+        // console.log(newEl.firstChild.nodeValue.trim() )
         curElements.textContent = newEl.textContent;
       }
+      // udpates attributes
+      if (!newEl.isEqualNode(curElements))
+        Array.from(newEl.attributes).forEach(attr =>
+          curElements.setAttribute(attr.name, attr.value)
+        );
     });
   }
 

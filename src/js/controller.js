@@ -15,8 +15,6 @@ const controllerRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
-
-    resultsView.renderSpinner();
     recipeView.renderSpinner();
 
     // 1) lading the recipe , async function , not a pure function in module
@@ -33,12 +31,15 @@ const controllerSearchResults = async function () {
   try {
     const query = searchView.getQuery();
     if (!query) return;
+    resultsView.renderSpinner()
+
     // load the search results
     await model.loadSearchResults(query);
 
     // render search results
     // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
+    
     // render the pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
@@ -47,7 +48,7 @@ const controllerSearchResults = async function () {
 };
 controllerSearchResults();
 
-// handler
+// handler PAGINATION
 const controllerPagination = function (goToPage) {
   // render NEW RESULTS
   resultsView.render(model.getSearchResultsPage(goToPage));
