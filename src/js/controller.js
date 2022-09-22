@@ -3,6 +3,7 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 // polyfills for older browsers
 import 'regenerator-runtime/runtime';
 import 'core-js/stable';
@@ -14,10 +15,13 @@ import 'core-js/stable';
 const controllerRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
+
     if (!id) return;
     recipeView.renderSpinner();
-
-    // 1) lading the recipe , async function , not a pure function in module
+    // update results view and marking the selected results.
+    resultsView.update(model.getSearchResultsPage())
+    bookmarksView.update(model.state.bookmarks)
+    // 1) loading the recipe, it's a async function, not a pure function in module.js, 
     await model.receiveRecipe(id);
 
     // 2) rendering recipe , passing view model of recipe
@@ -68,11 +72,13 @@ const controllerServings = function (newServings) {
 
 // BOOKMARK
 const controllerAddBookmark = function () {
+  // Add/Remove Bookmark
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
   else model.removeBookmark(model.state.recipe.id);
-
-  console.log(model.state.recipe);
+  // Updating recipe view
   recipeView.update(model.state.recipe);
+  // Render Bookmarks
+  bookmarksView.render(model.state.bookmarks)
 };
 
 // publisher-subscriber pattern
