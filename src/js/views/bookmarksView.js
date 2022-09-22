@@ -7,6 +7,9 @@ class BookmarksView extends View {
   _errorMessage = `No Bookmarks`;
   _successfulMessage = ``;
 
+  addHandlerRender(handler) {
+    window.addEventListener('load', handler)
+  }
   _generateMarkup() {
     return this._data
     // returning a markup as a string with false par.

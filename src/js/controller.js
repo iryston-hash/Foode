@@ -18,16 +18,22 @@ const controllerRecipes = async function () {
 
     if (!id) return;
     recipeView.renderSpinner();
-    // update results view and marking the selected results.
-    resultsView.update(model.getSearchResultsPage())
-    bookmarksView.update(model.state.bookmarks)
-    // 1) loading the recipe, it's a async function, not a pure function in module.js, 
+
+    // update results view
+    resultsView.update(model.getSearchResultsPage());
+
+    // storing and marking the selected bookmark results.
+    bookmarksView.update(model.state.bookmarks);
+
+    // 1) loading the recipe, it's a async function, not a pure function in module.js,
     await model.receiveRecipe(id);
 
     // 2) rendering recipe , passing view model of recipe
     recipeView.render(model.state.recipe);
+    
   } catch (err) {
     recipeView.renderError();
+    console.error(err);
   }
 };
 
@@ -78,11 +84,16 @@ const controllerAddBookmark = function () {
   // Updating recipe view
   recipeView.update(model.state.recipe);
   // Render Bookmarks
-  bookmarksView.render(model.state.bookmarks)
+  bookmarksView.render(model.state.bookmarks);
 };
 
+// Bookmark handler function.
+const controllerBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
 // publisher-subscriber pattern
 const init = function () {
+  bookmarksView.addHandlerRender(controllerBookmarks);
   recipeView.addHandleRender(controllerRecipes);
   recipeView.addHandlerUpdateServings(controllerServings);
   recipeView.addHandlerAddBookmark(controllerAddBookmark);
