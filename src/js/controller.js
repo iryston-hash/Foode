@@ -4,6 +4,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
 // polyfills for older browsers
 import 'regenerator-runtime/runtime';
 import 'core-js/stable';
@@ -30,7 +31,6 @@ const controllerRecipes = async function () {
 
     // 2) rendering recipe , passing view model of recipe
     recipeView.render(model.state.recipe);
-    
   } catch (err) {
     recipeView.renderError();
     console.error(err);
@@ -91,6 +91,14 @@ const controllerAddBookmark = function () {
 const controllerBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
+
+// User Recipes handler function
+const controllerAddRecipe = function (newRec) {
+
+
+  console.log(newRec);
+};
+
 // publisher-subscriber pattern
 const init = function () {
   bookmarksView.addHandlerRender(controllerBookmarks);
@@ -99,5 +107,6 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controllerAddBookmark);
   searchView.addHandlerSearch(controllerSearchResults);
   paginationView.addHandlerClick(controllerPagination);
+  addRecipeView.addHandlerUpload(controllerAddRecipe);
 };
 init();
