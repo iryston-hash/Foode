@@ -21,13 +21,13 @@ export const receiveRecipe = async function (id) {
     const { recipe } = data.data;
     state.recipe = {
       id: recipe.id,
-      image: recipe.image_url,
       title: recipe.title,
-      ingredients: recipe.ingredients,
-      cookingTime: recipe.cooking_time,
-      servings: recipe.servings,
-      source: recipe.source_url,
       publisher: recipe.publisher,
+      source: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.servings,
+      cookingTime: recipe.cooking_time,
+      ingredients: recipe.ingredients,
     };
     //  checking bookmarked state , ! this is an arrray, using 'some()'to check.
     if (state.bookmarks.some(bookmark => bookmark.id === id))
@@ -81,9 +81,9 @@ export const updateServings = function (newServings) {
 };
 
 // localStorage the Bookmarks
-const localStorageSetBookmarks = function() {
-  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks))
-} 
+const localStorageSetBookmarks = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
 
 // BOOKMARKS
 export const addBookmark = function (recipe) {
@@ -91,22 +91,58 @@ export const addBookmark = function (recipe) {
 
   // marked bookmark
   if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
-  
-  localStorageSetBookmarks()
+
+  localStorageSetBookmarks();
 };
 
 export const removeBookmark = function (id) {
   const index = state.bookmarks.findIndex(el => el.id === id);
   state.bookmarks.splice(index, 1);
-  // unmarked 
+  // unmarked
   if (id === state.recipe.id) state.recipe.bookmarked = false;
-  
-  localStorageSetBookmarks()
+
+  localStorageSetBookmarks();
 };
 
-const localStorageGetBookmarks = function() {
-  const storage =localStorage.getItem('bookmarks')
-  if (storage) state.bookmarks = JSON.parse(storage)
-} 
-localStorageGetBookmarks()
+const localStorageGetBookmarks = function () {
+  const storage = localStorage.getItem('bookmarks');
+  if (storage) state.bookmarks = JSON.parse(storage);
+};
+localStorageGetBookmarks();
 
+// upload user recipe
+
+export const uploadRecipe = async function (newRecipe) {
+  try {
+    const ingredients = Object.entries(newRecipe)
+      // entry[0] -> key , entry[1] -> value
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+      .map(ing => {
+        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        if (ingArr.length !== 3)
+          throw new Error(`Wrong units or format, try again.`);
+
+        const [quantity, unit, description] = ingArr;
+
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+    console.log(ingredients);
+    // console.log(Object.entries(newRecipe))
+    // Object.entries turns obj into array
+
+    // creating a recipe object
+    const recipe = {
+      title: newRecipe.title,
+      source_url: newRecipe.source_url,
+      image_url: newRecipe.image_url,
+      publisher: newRecipe.publisher,
+      cookingTime: +newRecipe.cooking_time,
+      servings: +newRecipe.servings,
+      ingredients,
+    };
+    console.log(recipe.cookingTime)
+    console.log(recipe.servings)
+  } catch (error) {
+    throw error;
+  }
+};

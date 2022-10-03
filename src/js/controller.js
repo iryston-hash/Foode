@@ -93,10 +93,14 @@ const controllerBookmarks = function () {
 };
 
 // User Recipes handler function
-const controllerAddRecipe = function (newRec) {
-
-
-  console.log(newRec);
+const controllerAddRecipe = async function (newRecipe) {
+  try {
+    await model.uploadRecipe(newRecipe);
+    // console.log(Object.entries(newRecipe))
+  } catch (error) {
+    console.error(error);
+    addRecipeView.renderError(error.message)
+  }
 };
 
 // publisher-subscriber pattern
