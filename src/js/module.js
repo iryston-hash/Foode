@@ -142,7 +142,6 @@ export const uploadRecipe = async function (newRecipe) {
     };
     // console.log(recipe.cookingTime)
     // console.log(recipe.servings)
-
     const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe)
     console.log(data)
   } catch (error) {

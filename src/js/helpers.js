@@ -27,6 +27,7 @@ export const getJSON = async function (url) {
 // POST USER RECIPE
 export const sendJSON = async function (url, uploadData) {
   try {
+
     const fetchPro = fetch(url, {
       method: 'POST',
       headers: {
