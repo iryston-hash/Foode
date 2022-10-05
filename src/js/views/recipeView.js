@@ -103,7 +103,7 @@ class RecipeView extends View {
     <p class="recipe__directions-text">
       Source of Recipes are located on 
       <span class="recipe__publisher">${
-        this._data.source
+        this._data.publisher
       }</span>. Please for detail explanation of cooking certain meals , visit the website linked above.
     </p>
     <a

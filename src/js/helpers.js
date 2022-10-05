@@ -40,10 +40,9 @@ export const sendJSON = async function (url, uploadData) {
     const data = await res.json();
 
     if (!res.ok)
-      throw new Error(`${data.message}  RESPONSE STATUS -> ${res.status}`);
+      throw new Error(`${data.message} ${res.status}`);
     return data;
   } catch (error) {
-    //rethrowing the error to the module.js file
     throw error;
   }
 };

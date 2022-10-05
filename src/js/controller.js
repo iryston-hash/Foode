@@ -8,6 +8,7 @@ import addRecipeView from './views/addRecipeView.js';
 // polyfills for older browsers
 import 'regenerator-runtime/runtime';
 import 'core-js/stable';
+import { async } from 'regenerator-runtime';
 
 // if (module.hot) {
 //   module.hot.accept();

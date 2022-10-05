@@ -1,5 +1,6 @@
-import { API_URL, RES_PAGINATION } from './config.js';
-import { getJSON, sendJSON, API_KEY } from './helpers.js';
+import { async } from 'regenerator-runtime';
+import { API_URL, RES_PAGINATION, API_KEY} from './config.js';
+import { getJSON, sendJSON } from './helpers.js';
 
 // state contains all the data
 export const state = {
@@ -100,7 +101,6 @@ export const removeBookmark = function (id) {
   state.bookmarks.splice(index, 1);
   // unmarked
   if (id === state.recipe.id) state.recipe.bookmarked = false;
-
   localStorageSetBookmarks();
 };
 
@@ -110,12 +110,12 @@ const localStorageGetBookmarks = function () {
 };
 localStorageGetBookmarks();
 
-// upload user recipe
 
+// upload user recipe
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.entries(newRecipe)
-      // entry[0] -> key , entry[1] -> value
+    // entry[0] -> key , entry[1] -> value
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
         const ingArr = ing[1].replaceAll(' ', '').split(',');
@@ -133,10 +133,10 @@ export const uploadRecipe = async function (newRecipe) {
     // creating a recipe object
     const recipe = {
       title: newRecipe.title,
-      source_url: newRecipe.source_url,
-      image_url: newRecipe.image_url,
+      source_url: newRecipe.source,
+      image_url: newRecipe.image,
       publisher: newRecipe.publisher,
-      cookingTime: +newRecipe.cooking_time,
+      cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
       ingredients,
     };
