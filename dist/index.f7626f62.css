@@ -51,6 +51,10 @@ body {
   }
 }
 
+::placeholder {
+  opacity: .5;
+}
+
 .btn--small, .btn--small:link, .btn--small:visited, .btn {
   text-transform: uppercase;
   color: #fff;
