@@ -9,6 +9,7 @@ const timeout = function (s) {
   });
 };
 
+// REFACTORED BELOW PROMISES 
 export const AJAX = async function (url, uploadData = undefined) {
   try {
     const fetchPro = uploadData
@@ -32,6 +33,7 @@ export const AJAX = async function (url, uploadData = undefined) {
   }
 };
 
+/*
 export const getJSON = async function (url) {
   try {
     const fetchPro = fetch(url);
@@ -68,3 +70,4 @@ export const sendJSON = async function (url, uploadData) {
     throw error;
   }
 };
+*/

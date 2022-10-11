@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PAGINATION, API_KEY } from './config.js';
-import { getJSON, sendJSON } from './helpers.js';
+import { AJAX } from './helpers.js';
 
 // state contains all the data
 export const state = {
@@ -35,7 +35,7 @@ const createRecipeObject = function (data) {
 // load recipe
 export const receiveRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}${id}`);
+    const data = await AJAX(`${API_URL}${id}?key=${API_KEY}`);
 
     state.recipe = createRecipeObject(data);
     // const { recipe } = data.data;
@@ -49,6 +49,7 @@ export const receiveRecipe = async function (id) {
     //   cookingTime: recipe.cooking_time,
     //   ingredients: recipe.ingredients,
     // };
+
     //  checking bookmarked state , ! this is an arrray, using 'some()'to check.
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
@@ -64,7 +65,7 @@ export const loadSearchResults = async function (query) {
   try {
     state.search.query;
 
-    const data = await getJSON(`${API_URL}?search=${query}`);
+    const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
     state.search.results = data.data.recipes.map(rec => {
       return {
@@ -72,6 +73,7 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
         title: rec.title,
         publisher: rec.publisher,
+        ...(rec.key && { key: rec.key }),
       };
     });
     // whenever the new search page init. , the search results section of pagination restarts to the first page.
@@ -137,7 +139,8 @@ export const uploadRecipe = async function (newRecipe) {
       // entry[0] -> key , entry[1] -> value
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
-        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        const ingArr = ing[1].split(',').map(el => el.trim())
+        // const ingArr = ing[1].replaceAll(' ', '').split(',');
         if (ingArr.length !== 3)
           throw new Error(`Wrong units or format, try again.`);
 
@@ -161,8 +164,8 @@ export const uploadRecipe = async function (newRecipe) {
     };
     // console.log(recipe.cookingTime)
     // console.log(recipe.servings)
-    const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
-    
+    const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
+
     state.recipe = createRecipeObject(data);
     addBookmark(state.recipe);
   } catch (error) {
