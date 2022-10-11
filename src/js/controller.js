@@ -5,6 +5,7 @@ import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
+import { RECIPE_MODAL_CLOSE_TIMER } from './config.js';
 // polyfills for older browsers
 import 'regenerator-runtime/runtime';
 import 'core-js/stable';
@@ -96,11 +97,27 @@ const controllerBookmarks = function () {
 // User Recipes handler function
 const controllerAddRecipe = async function (newRecipe) {
   try {
+    // spinner
+    addRecipeView.renderSpinner()
+
     await model.uploadRecipe(newRecipe);
     // console.log(Object.entries(newRecipe))
+    console.log(model.state.recipe);
+
+    // render uploaded recipe
+    recipeView.render(model.state.recipe);
+
+    // success message display
+    addRecipeView.renderSuccessfulMessage()
+    
+    // close form modal window
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, RECIPE_MODAL_CLOSE_TIMER);
+
   } catch (error) {
     console.error(error);
-    addRecipeView.renderError(error.message)
+    addRecipeView.renderError(error.message);
   }
 };
 
