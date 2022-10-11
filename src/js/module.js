@@ -26,7 +26,7 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
-    
+
     // using short curcuit trick , if a recipe key does exist it will display it , if not the expression will just be ignored.
     ...(recipe.key && { key: recipe.key }),
   };
@@ -162,6 +162,7 @@ export const uploadRecipe = async function (newRecipe) {
     // console.log(recipe.cookingTime)
     // console.log(recipe.servings)
     const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    
     state.recipe = createRecipeObject(data);
     addBookmark(state.recipe);
   } catch (error) {
